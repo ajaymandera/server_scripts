@@ -1,0 +1,4 @@
+[client]
+host     = plus91.cyhygbfefeqs.us-west-2.rds.amazonaws.com
+user     = plus91
+password = plus91admin

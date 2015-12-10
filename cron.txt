@@ -1,0 +1,9 @@
+*/5 * * * * sh /plus91/cpu_alerts.sh
+*/5 * * * * sh /plus91/ram_alerts.sh
+*/5 * * * * sh /plus91/ram_status.sh
+*/5 * * * * sh /plus91/cpu_status.sh
+30 23 * * * sh /plus91/slow_query.sh
+00 08 * * * sh /plus91/hourly_slow_query.sh
+35 23 * * * sh /plus91/hdd_status.sh
+59 23 * * * bash /plus91/access.sh
+00 03 * * * sh /plus91/hdd_check.sh
