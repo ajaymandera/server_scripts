@@ -1,17 +1,13 @@
 #!/bin/bash
 #!/bin/sh
-. /plus91/config.sh
-. /plus91/ram_status.sh
-ps aux | awk '{sum1 +=$4}; END {print sum1}' | awk '{if($1 >= 75) print$0}' > /tmp/ram.txt
-sleep 2m
-ps aux | awk '{sum1 +=$4}; END {print sum1}' | awk '{if($1 >= 75) print$0}' >> /tmp/ram.txt
+. config.sh
 
-#ram1=$(ps aux | awk '{sum1 +=$4}; END {print sum1}')
-#sleep 2m
+total_ram=$(free -m | head -2 | awk '{print $2}' | tail -1)
+ram1=$(ps aux | awk '{sum1 +=$4}; END {print sum1}')
+sleep 2m
 ram2=$(ps aux | awk '{sum1 +=$4}; END {print sum1}')
 
-if [ $(wc -l </tmp/ram.txt) -ge 2 ]
-#if [ "$ram1" > 75 ]  && [ "$ram2" < 75 ]
+if [[ $ram1 > "75"  &&  $ram2 < "75" ]]
 then
 ram2=$(awk 'BEGIN{print '$total_ram'*'$ram2/100'}')
 mysql --defaults-file="/plus91/mysql.txt" $database << EOF
