@@ -30,7 +30,6 @@ total_avg=$(awk 'BEGIN {print '$total_avg'/'4'}')
 ck_cpu=$(echo "$total_avg >= 50" | bc)
 
 if [ $ck_cpu -eq 1 ];then
-then
 
 #echo "Total CPU: $total_avg"
 
