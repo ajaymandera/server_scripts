@@ -2,5 +2,5 @@
 . /plus91/config.sh
 if [ $(wc -l </var/log/mysql/mysql-slow.log) -ge 4 ]
 then
-mail -s "$server_name - Slow Query Log " $email_ids < /var/log/mysql/mysql-slow.log
+mail -s "$server_name - Slow Query Log " $slow_query_email_ids < /var/log/mysql/mysql-slow.log
 fi
