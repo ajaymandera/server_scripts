@@ -1,6 +1,6 @@
 #!/bin/bash
 #!/bin/sh
-. config.sh
+. /plus91/config.sh
 
 total_ram=$(free -m | head -2 | awk '{print $2}' | tail -1)
 ram1=$(ps aux | awk '{sum1 +=$4}; END {print sum1}')
