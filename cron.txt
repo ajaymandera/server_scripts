@@ -1,5 +1,5 @@
 */5 * * * * sh /plus91/cpu_alerts.sh
-*/5 * * * * sh /plus91/ram_alerts.sh
+*/5 * * * * bash /plus91/ram_alerts.sh
 */5 * * * * sh /plus91/ram_status.sh
 */5 * * * * sh /plus91/cpu_status.sh
 30 23 * * * sh /plus91/slow_query.sh
