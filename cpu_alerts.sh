@@ -1,4 +1,5 @@
 #!/bin/bash
+. /plus91/config.sh
 min=100
 avg=0
 max=0
@@ -23,7 +24,7 @@ do
         avg=$(awk 'BEGIN {print '$avg'/'5'}')
         total_avg=$(awk 'BEGIN {print '$total_avg'+'$avg'}')
         avg=0
-sleep 15s
+sleep 1m
 done
 total_avg=$(awk 'BEGIN {print '$total_avg'/'4'}')
 
@@ -34,8 +35,8 @@ if [ $ck_cpu -eq 1 ];then
 #echo "Total CPU: $total_avg"
 
 mysql --defaults-file="/plus91/mysql.txt" $database << EOF
-insert into cpu_alerts (ID,CPU_Usage,Mail_notification,Email_ids,Date) values(NULL,'$cpu_usage','sent','$email_ids',CURRENT_TIMESTAMP);
+insert into cpu_alerts (ID,CPU_Usage,Mail_notification,Email_ids,Date) values(NULL,'$total_avg','sent','$email_ids',CURRENT_TIMESTAMP);
 EOF
-echo "CPU Usage high on $server_name Server, Current CPU usage is $total_avg%" | mail -s "$server_name Server - CPU Usage High" $email_ids
+#echo "CPU Usage high on $server_name Server, Current CPU usage is $total_avg%" | mail -s "$server_name Server - CPU Usage High" $email_ids
+echo "CPU Usage high on $server_name Server, Current CPU usage is $total_avg%" | mailx -r "ajay.mandera@plus91.in" -s "$server_name Server - CPU Usage High" -S smtp="$smtp_server" -S smtp-use-starttls -S smtp-auth=login -S smtp-auth-user="$smtp_user" -S smtp-auth-password="$smtp_password" -S ssl-verify=ignore $email_ids 
 fi
-
