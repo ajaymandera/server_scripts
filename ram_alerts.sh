@@ -11,8 +11,10 @@ if [ -z "$ram2" ]
 then
 	ram2=0
 fi
+ck_ram1=$(echo "$ram1 > 75" | bc)
+ck_ram2=$(echo "$ram2 > 75" | bc)
 
-if [[ $ram1 > "75"  &&  $ram2 > "75" ]]
+if [[ $ck_ram1 -eq 1 &&  $ck_ram2 -eq 1 ]]
 then
 ram2=$(awk 'BEGIN{print '$total_ram'*'$ram2/100'}')
 mysql --defaults-file="/plus91/mysql.txt" $database << EOF
