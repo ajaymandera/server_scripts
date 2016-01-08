@@ -4,7 +4,7 @@ min=100
 avg=0
 max=0
 total_avg=0
-for i in 1 2 3 4
+for i in 1 2 3 4 5 6 7 8
 do
         for j in 1 2 3 4 5
         do
@@ -24,7 +24,7 @@ do
         avg=$(awk 'BEGIN {print '$avg'/'5'}')
         total_avg=$(awk 'BEGIN {print '$total_avg'+'$avg'}')
         avg=0
-sleep 1m
+sleep 25s
 done
 total_avg=$(awk 'BEGIN {print '$total_avg'/'4'}')
 
