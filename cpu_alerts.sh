@@ -28,7 +28,7 @@ sleep 25s
 done
 total_avg=$(awk 'BEGIN {print '$total_avg'/'8'}')
 
-ck_cpu=$(echo "$total_avg >= 50" | bc)
+ck_cpu=$(echo "$total_avg >= 60" | bc)
 
 if [ $ck_cpu -eq 1 ];then
 
