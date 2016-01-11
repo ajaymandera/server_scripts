@@ -1,8 +1,10 @@
 #!/bin/bash
 . /plus91/config.sh
-. /plus91/hdd_status.sh
+
 
 df -h | grep /dev/xvda1 | awk '{if($5 >= "70%")print $0}' > ~/.current_hdd
+hdd_size=$(df -hm | awk 'FNR == 2 {print $2}')
+hdd_used=$(df -hm | awk 'FNR == 2 {print $3}')
 high_hdd=$(df -h | grep /dev/xvda1 | awk '{if($5 >= "70%")print $3}')
 
 if [ ! -z $high_hdd ]
